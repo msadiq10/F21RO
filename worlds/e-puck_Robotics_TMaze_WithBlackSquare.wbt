@@ -237,7 +237,7 @@ DEF Controller E-puck {
   hidden rotation_2 0 1 0 4.692355969733015
   translation 0.008472364328590545 -6.683320346322422e-05 0.31855129692580025
   rotation -0.4015024405594834 0.647936875597046 0.6472816971507199 2.378880193400913
-  controller "e-puck"
+  controller "task1"
   emitter_channel 20
   receiver_channel 19
   groundSensorsSlot [
