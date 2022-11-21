@@ -46,16 +46,27 @@ rightMotor.setVelocity(initialVelocity)
 
 while robot.step(timeStep) != -1:
     print("Prox0: "+str(prox0.getValue()))
+    print("Prox1: "+str(prox1.getValue()))
+    print("Prox2: "+str(prox2.getValue()))
+    print("Prox3: "+str(prox3.getValue()))
+    print("Prox4: "+str(prox4.getValue()))
+    print("Prox5: "+str(prox5.getValue()))
+    print("Prox6: "+str(prox6.getValue()))
     print("Prox7: "+str(prox7.getValue()))
-    left_obstacle = prox0.getValue() > 200 or prox7.getValue() > 200
+    print("")
+    left_obstacle = prox0.getValue() > 195 and prox7.getValue() > 200 and prox1.getValue() > 100 and prox6.getValue() > 100 and prox2.getValue() > 60 and prox5.getValue() > 60 and prox3.getValue() > 60 and prox4.getValue() > 60
     #Sprint(left_obstacle)
     right_obstacle = prox4.getValue() > 75 or prox5.getValue() > 75 or prox6.getValue() > 75 or prox7.getValue() > 75
+    leftMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
+    rightMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
     if (left_obstacle):
         #print("Left Obstacle Encountered")
         #print(left_obstacle)
-        leftMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
-        rightMotor.setVelocity(initialVelocity+(0.5*initialVelocity))
-    elif (right_obstacle):
+        # while prox0.getValue() > 200 and prox7.getValue() > 200 and prox1.getValue() > 100 and prox6.getValue() > 100 and prox2.getValue() > 60 and prox5.getValue() > 60 and prox3.getValue() > 60 and prox4.getValue() > 60:
+        leftMotor.setVelocity(0)
+        rightMotor.setVelocity(0)
+    # elif (right_obstacle):
         #print("right Obstacle Encountered")
-        leftMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
-        rightMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
+        
+        # leftMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
+        # rightMotor.setVelocity(initialVelocity-(0.5*initialVelocity))
