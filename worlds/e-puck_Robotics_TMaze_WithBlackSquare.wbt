@@ -231,7 +231,7 @@ DEF OBSTACLE1 Solid {
 DEF Controller E-puck {
   translation 0.011888 -8.54421e-05 0.357886
   rotation -0.5773083145244129 0.5776673164529254 0.577075022404416 2.093371189599888
-  controller "task1"
+  controller "cw_task1"
   emitter_channel 20
   receiver_channel 19
   groundSensorsSlot [

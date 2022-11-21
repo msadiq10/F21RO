@@ -36,10 +36,21 @@ class Controller:
         self.right_ir = self.robot.getDevice('gs2')
         self.right_ir.enable(self.time_step)
         
+        self.turn_right = False
+        
 
     def run_robot(self):        
 
         while self.robot.step(self.time_step) != -1:
+        
+            left_ir_value = self.left_ir.getValue()
+            center_ir_value = self.center_ir.getValue()
+            right_ir_value = self.right_ir.getValue()
+            
+            if left_ir_value < 800 and center_ir_value < 800 and right_ir_value < 800:
+                self.turn_right = True
+            
+            print("left: {} center: {} right: {}".format(left_ir_value, center_ir_value, right_ir_value))
             
             for i in range(8):
                 print("Distance Sensors - Index: {}  Value: {}".format(i,self.proximity_sensors[i].getValue()))
@@ -51,9 +62,14 @@ class Controller:
             right_speed = self.max_speed
             
             if front_wall:
-                print("Turning left")
-                left_speed = -self.max_speed
-                right_speed = self.max_speed
+                if not self.turn_right:
+                    print("Turning left")
+                    left_speed = -self.max_speed
+                    right_speed = self.max_speed
+                elif self.turn_right:
+                    print("Turning right")
+                    left_speed = self.max_speed
+                    right_speed = -self.max_speed
             
             self.left_motor.setVelocity(left_speed)
             self.right_motor.setVelocity(right_speed)
