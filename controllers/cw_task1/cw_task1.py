@@ -40,20 +40,21 @@ class Controller:
         
 
     def run_robot(self):        
-
         while self.robot.step(self.time_step) != -1:
+            turn_right = self.turn_right
         
             left_ir_value = self.left_ir.getValue()
             center_ir_value = self.center_ir.getValue()
             right_ir_value = self.right_ir.getValue()
             
-            if left_ir_value < 800 and center_ir_value < 800 and right_ir_value < 800:
+            if left_ir_value < 300 and center_ir_value < 300 and right_ir_value < 300:
                 self.turn_right = True
+                print("TRUEEEEEEE")
             
-            print("left: {} center: {} right: {}".format(left_ir_value, center_ir_value, right_ir_value))
+            # print("left: {} center: {} right: {}".format(left_ir_value, center_ir_value, right_ir_value))
             
-            for i in range(8):
-                print("Distance Sensors - Index: {}  Value: {}".format(i,self.proximity_sensors[i].getValue()))
+            # for i in range(8):
+                # print("Distance Sensors - Index: {}  Value: {}".format(i,self.proximity_sensors[i].getValue()))
                 
             right_wall = self.proximity_sensors[2].getValue() > 80
             front_wall = self.proximity_sensors[0].getValue() > 80 or self.proximity_sensors[7].getValue() > 80
@@ -61,13 +62,13 @@ class Controller:
             left_speed = self.max_speed
             right_speed = self.max_speed
             
-            if front_wall:
-                if not self.turn_right:
-                    print("Turning left")
+            if front_wall and not (left_ir_value < 800 and center_ir_value < 800 and right_ir_value < 800):
+                if not turn_right:
+                    # print("Turning left")
                     left_speed = -self.max_speed
                     right_speed = self.max_speed
-                elif self.turn_right:
-                    print("Turning right")
+                elif turn_right:
+                    # print("Turning right")
                     left_speed = self.max_speed
                     right_speed = -self.max_speed
             
