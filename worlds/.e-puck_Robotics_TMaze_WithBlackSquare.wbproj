@@ -5,7 +5,8 @@ sceneTreePerspectives: 000000ff000000010000000300000022000000c0000000fc010000000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 2 "C:/Users/sadiq/AppData/Local/Programs/Webots/projects/robots/gctronic/e-puck/controllers/e-puck/e-puck.c" "controllers/task1/task1.py" "controllers/cw_task1/cw_task1.py" "controllers/e-puck_line_lab1/e-puck_line_lab1.py"
+textFiles: 0 "controllers/cw_task1/cw_task1.py"
+globalOptionalRendering: DistanceSensorRays
 consoles: Console:All:All
 renderingDevicePerspectives: Supervisor:display;1;1;0;0
 renderingDevicePerspectives: e-puck:camera;1;1;0;0
