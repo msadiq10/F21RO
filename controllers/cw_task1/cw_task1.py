@@ -50,11 +50,12 @@ class Controller:
             # to max speed.
             left_speed = self.max_speed
             right_speed = self.max_speed
-            
+            print("ps: ",self.proximity_sensors[0].getValue(), self.proximity_sensors[7].getValue(), self.proximity_sensors[2].getValue(), self.proximity_sensors[5].getValue())
             # store ground sensors values
             left_ir_value = self.left_ir.getValue()
             center_ir_value = self.center_ir.getValue()
             right_ir_value = self.right_ir.getValue()
+            # print(left_ir_value, center_ir_value, right_ir_value)
             
             # if ground sensors detect black mark,
             # prepare to turn right at the junction
@@ -64,9 +65,17 @@ class Controller:
             
             # Check if the bot has reached the junction
             front_wall = self.proximity_sensors[0].getValue() > 120 or self.proximity_sensors[7].getValue() > 120  
+            front_wall1 = self.proximity_sensors[0].getValue() > 80 and self.proximity_sensors[0].getValue() < 200 and self.proximity_sensors[7].getValue() > 80 and self.proximity_sensors[7].getValue() < 200
+            left_wall = self.proximity_sensors[5].getValue() > 80
+            right_wall = self.proximity_sensors[2].getValue() > 80
+            
+            if front_wall1 and right_wall and left_wall:
+                left_speed = 0.0
+                right_speed = 0.0
+                print("Reached")
             
             # If bot has reached the junction, decide whether to turn left or right accordingly.
-            if front_wall and not (left_ir_value < 800 and center_ir_value < 800 and right_ir_value < 800):
+            elif front_wall and not (left_ir_value < 800 and center_ir_value < 800 and right_ir_value < 800):
                 if not self.turn_right:
 
                     left_speed = -self.max_speed
@@ -75,6 +84,7 @@ class Controller:
 
                     left_speed = self.max_speed
                     right_speed = -self.max_speed
+                   
             
             # Update motor velocities.
             self.left_motor.setVelocity(left_speed)
