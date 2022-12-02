@@ -35,7 +35,7 @@ class SupervisorGA:
         self.emitterData = ""
         
         ### Define here the GA Parameters
-        self.num_generations = 100
+        self.num_generations = 50
         self.num_population = 8
         self.num_elite = 2
         
