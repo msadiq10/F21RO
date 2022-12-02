@@ -35,6 +35,10 @@ class SupervisorGA:
         self.emitterData = ""
         
         ### Define here the GA Parameters
+        # number of generations = 50, 
+        # population= 8,
+        # and elite indviduals= 2
+        # are the best parameters for our implementation
         self.num_generations = 50
         self.num_population = 8
         self.num_elite = 2

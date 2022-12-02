@@ -133,12 +133,16 @@ class Controller:
     def calculate_fitness(self):
         ### Define the fitness function to increase the speed of the robot and 
         ### to encourage the robot to move forward
+        # average of the speeds of the two motors is taken to be forward fitness
         forwardFitness = (self.velocity_left + self.velocity_right) / 2
                       
         ### Define the fitness function to avoid collision
+        # avoidance collision fitness is given by
+        # 1 - the activation value of the proximity sensors with the highest activity.
         avoidCollisionFitness = 1 - max(self.inputs[3:])
 
-        ### Define the fitness function to avoid collision
+        # ground fitness is given by
+        # 1 - the average of the ground sensors
         groundFitness = 1 - sum(self.inputs[:3])/3
         
         ### Define the fitness function to avoid spining behaviour
