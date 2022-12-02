@@ -8,7 +8,7 @@ class Controller:
         # Robot Parameters
         self.robot = robot
         self.time_step = int(robot.getBasicTimeStep())
-        self.max_speed = 6.28
+        self.max_speed = 1.0
         
         # Enable Motors
         self.left_motor = self.robot.getDevice('left wheel motor')
